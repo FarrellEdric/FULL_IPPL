@@ -20,8 +20,11 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'email',
+        'username',
         'password',
+        'email',
+        'fullname',
+        'role',
     ];
 
     /**
@@ -49,6 +52,16 @@ class User extends Authenticatable
 
     public function activity(): HasMany
     {
-        return $this->hasMany(User::class);
+        return $this->hasMany(ActivityLog::class);
+    }
+
+    public function order(): HasMany
+    {
+        return $this->hasMany(Order::class);
+    }
+
+    public function booking(): HasMany
+    {
+        return $this->hasMany(Booking::class);
     }
 }

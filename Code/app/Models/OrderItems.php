@@ -21,8 +21,18 @@ class OrderItems extends Model
         return $this->belongsTo(Order::class, 'category_id');
     }
 
+    public function product(): BelongsTo
+    {
+        return $this->belongsTo(Product::class, 'product_id');
+    }
+
     public function products(): HasMany
     {
         return $this->hasMany(Product::class);
+    }
+
+    public function getSubTotal()
+    {
+        return $this->quantity * $this->price;
     }
 }

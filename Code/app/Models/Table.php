@@ -16,4 +16,9 @@ class Table extends Model
     {
         return $this->hasMany(Booking::class);
     }
+
+    public function activeBooking()
+    {
+        return $this->hasOne(Booking::class)->where('status', 'filled');
+    }
 }

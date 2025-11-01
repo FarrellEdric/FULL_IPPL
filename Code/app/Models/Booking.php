@@ -11,16 +11,16 @@ class Booking extends Model
     protected $fillable = [
         'status',
         'user_id',
-        'tables_id'
+        'table_id'
     ];
 
-    public function bookings(): BelongsTo
+    public function table(): BelongsTo
     {
-        return $this->belongsTo(Table::class);
+        return $this->belongsTo(Table::class, 'table_id');
     }
 
-    public function orders(): HasMany
+    public function user(): BelongsTo
     {
-        return $this->hasMany(Order::class,'order_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 }
